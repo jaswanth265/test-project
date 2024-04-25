@@ -2,7 +2,7 @@
 resource "aws_security_group" "web_sg" {
   vpc_id = aws_vpc.web-vpc.id
 
-# ssh for terraform remote exec
+  # ssh for terraform remote exec
   ingress {
     description = "Allow remote SSH from anywhere"
     cidr_blocks = ["0.0.0.0/0"]
@@ -10,7 +10,7 @@ resource "aws_security_group" "web_sg" {
     to_port     = 22
     protocol    = "tcp"
   }
-  
+
   # enable http 
   ingress {
     description = "Allow HTTP request from anywhere"
@@ -19,7 +19,7 @@ resource "aws_security_group" "web_sg" {
     to_port     = 80
     protocol    = "tcp"
   }
- 
+
   # enable https
   ingress {
     description = "Allow HTTPS request from anywhere"
@@ -49,9 +49,9 @@ resource "aws_security_group" "rds_mysql_sg" {
 
   # Allow inbound traffic only from Web Server Security Group
   ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
     security_groups = [aws_security_group.web_sg.id]
   }
 
@@ -62,7 +62,7 @@ resource "aws_security_group" "rds_mysql_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-   tags = {
+  tags = {
     Name = "rds-sg"
-   }
+  }
 }

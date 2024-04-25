@@ -1,55 +1,55 @@
 resource "aws_vpc" "web-vpc" {
-   cidr_block = var.vpc_cidr
-   enable_dns_hostnames = true
-   enable_dns_support = true
-   tags={
-    env = "prod"
-    Name = "var.vpc_name" 
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  tags = {
+    env  = "prod"
+    Name = "var.vpc_name"
 
-   }
+  }
 
   #  depends_on = [aws_iam_policy.ec2_full_access]
 }
 
 
 resource "aws_subnet" "public_subnet1" {
-    vpc_id = "${aws_vpc.web-vpc.id}"
-    cidr_block = "${var.public_subnet1_cidr}"
-    availability_zone = "us-west-2a"
+  vpc_id            = aws_vpc.web-vpc.id
+  cidr_block        = var.public_subnet1_cidr
+  availability_zone = "us-west-2a"
 
-    tags = {
-        Name = "${var.public_subnet1_name}"
-    }
+  tags = {
+    Name = "${var.public_subnet1_name}"
+  }
 }
 
 resource "aws_subnet" "public_subnet2" {
-    vpc_id = "${aws_vpc.web-vpc.id}"
-    cidr_block = "${var.public_subnet2_cidr}"
-    availability_zone = "us-west-2b"
+  vpc_id            = aws_vpc.web-vpc.id
+  cidr_block        = var.public_subnet2_cidr
+  availability_zone = "us-west-2b"
 
-    tags = {
-        Name = "${var.public_subnet2_name}"
-    }
+  tags = {
+    Name = "${var.public_subnet2_name}"
+  }
 }
 
 resource "aws_subnet" "private_subnet1" {
-    vpc_id = "${aws_vpc.web-vpc.id}"
-    cidr_block = "${var.private_subnet1_cidr}"
-    availability_zone = "us-west-2a"
+  vpc_id            = aws_vpc.web-vpc.id
+  cidr_block        = var.private_subnet1_cidr
+  availability_zone = "us-west-2a"
 
-    tags = {
-        Name = "${var.private_subnet1_name}"
-    }
+  tags = {
+    Name = "${var.private_subnet1_name}"
+  }
 }
 
 resource "aws_subnet" "private_subnet2" {
-    vpc_id = "${aws_vpc.web-vpc.id}"
-    cidr_block = "${var.private_subnet2_cidr}"
-    availability_zone = "us-west-2b"
+  vpc_id            = aws_vpc.web-vpc.id
+  cidr_block        = var.private_subnet2_cidr
+  availability_zone = "us-west-2b"
 
-    tags = {
-        Name = "${var.private_subnet2_name}"
-    }
+  tags = {
+    Name = "${var.private_subnet2_name}"
+  }
 }
 
 # Setup Internet Gateway
@@ -98,7 +98,7 @@ resource "aws_route_table_association" "public_rt_subnet_association" {
 
 # Private Route Table
 resource "aws_route_table" "private_route_table" {
-  vpc_id = aws_vpc.web-vpc.id
+  vpc_id     = aws_vpc.web-vpc.id
   depends_on = [aws_nat_gateway.nat_gateway]
   tags = {
     Name = "private-rt"

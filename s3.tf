@@ -10,7 +10,7 @@
 # }
 
 resource "aws_dynamodb_table" "terraform-locks" {
-  name = "terrafrom-state-locking"
+  name           = "terrafrom-state-locking"
   billing_mode   = "PROVISIONED"
   read_capacity  = 20
   write_capacity = 20

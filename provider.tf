@@ -1,7 +1,7 @@
 
 provider "aws" {
   shared_credentials_files = ["/Users/jaswanthkarnam/.aws/credentials"]
-  region = "us-west-2"
+  region                   = "us-west-2"
 }
 
 terraform {

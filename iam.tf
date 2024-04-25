@@ -23,8 +23,8 @@ resource "aws_iam_instance_profile" "s3-mybucket-role-instanceprofile" {
 }
 
 resource "aws_iam_role_policy" "s3-mybucket-role-policy" {
-  name = "s3-mybucket-role-policy"
-  role = aws_iam_role.s3-mybucket-role.id
+  name   = "s3-mybucket-role-policy"
+  role   = aws_iam_role.s3-mybucket-role.id
   policy = <<EOF
 {
     "Version": "2012-10-17",
