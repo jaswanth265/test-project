@@ -60,7 +60,7 @@ resource "aws_iam_role_policy" "s3_backend_policy" {
         "s3:GetObject",
         "s3:PutObject"
       ],
-      "Resource": "arn:aws:s3:::aws-s3-backend-terraform/*"  # Replace <your-bucket-name> with your S3 bucket name
+      "Resource": "arn:aws:s3:::aws-s3-backend-terraform/*"  
     }
   ]
 }
