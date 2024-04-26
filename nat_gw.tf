@@ -1,7 +1,7 @@
 #ElasticIP 
 resource "aws_eip" "eip" {
-  instance = aws_instance.web-server.id
-  domain   = "vpc"
+  # instance = aws_instance.web-server.id
+  domain = "vpc"
 }
 
 

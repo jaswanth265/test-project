@@ -26,9 +26,9 @@ variable "vpc_name" {
 
 }
 
-variable "availability_zone" {
+# variable "availability_zone" {
 
-}
+# }
 
 # variable "private_availability_zones" {
 #   description = "Availability_zones for private subnets"
@@ -50,7 +50,7 @@ variable "key_pair" {
 
 }
 
-variable "image_name" {
+variable "ami_id" {
 
 }
 

@@ -1,7 +1,7 @@
 # Create ALB
 
 resource "aws_lb" "alb" {
-  name               = "alg_tf"
+  name               = "alg-tf"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.elb_sg.id]

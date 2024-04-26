@@ -12,7 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   alarm_description   = "Alarm when CPU exceeds 70%"
 
   dimensions = {
-    aws_autoscaling_group = aws_autoscaling_group.default_asg
+    aws_autoscaling_group = "{aws_autoscaling_group.default_asg}"
   }
   alarm_actions = [aws_sns_topic.my_topic.arn]
 }
