@@ -1,5 +1,5 @@
 # resource "aws_s3_bucket" "s3_bucket"{
-#     bucket = "aws-tf-backend-access"
+#     bucket = "aws-s3-backend-terraform"
 #     acl = "private"
 #     lifecycle {
 #       prevent_destroy = true

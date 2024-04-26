@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "access-test-bucketsssssss"
+    bucket = "aws-s3-backend-terraform"
     key    = "value"
     region = "us-west-2"
     # dynamodb_table = "terrafrom-state-locking"
