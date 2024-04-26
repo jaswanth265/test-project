@@ -1,3 +1,29 @@
+# Create security group for load balancer
+
+resource "aws_security_group" "elb_sg" {
+  vpc_id = aws_vpc.web-vpc.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    description = "Allow remote HTTP from anywhere"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "Application LB SG"
+  }
+}
+
 # Create a Security Group for Web Servers
 resource "aws_security_group" "web_sg" {
   vpc_id = aws_vpc.web-vpc.id

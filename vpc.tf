@@ -61,14 +61,14 @@ resource "aws_internet_gateway" "public_internet_gateway" {
 }
 
 #ElasticIP 
-resource "aws_eip" "lb" {
+resource "aws_eip" "eip" {
   instance = aws_instance.web-server.id
   domain   = "vpc"
 }
 
 #Nat gateway
 resource "aws_nat_gateway" "nat_gateway" {
-  allocation_id = aws_eip.lb.id
+  allocation_id = aws_eip.eip.id
   subnet_id     = "{aws_subnet.public_subnet1.id,aws_subnet.public_subnet2.id}"
 
   tags = {
