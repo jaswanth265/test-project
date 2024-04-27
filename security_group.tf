@@ -1,6 +1,6 @@
 # Create security group for load balancer
 
-resource "aws_security_group" "elb_sg" {
+resource "aws_security_group" "alb_sg" {
   vpc_id = aws_vpc.web-vpc.id
 
   ingress {
