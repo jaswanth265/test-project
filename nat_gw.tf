@@ -1,5 +1,10 @@
 #ElasticIP 
-resource "aws_eip" "eip" {
+resource "aws_eip" "eip1" {
+  # instance = aws_instance.web-server.id
+  domain = "vpc"
+}
+
+resource "aws_eip" "eip2" {
   # instance = aws_instance.web-server.id
   domain = "vpc"
 }
@@ -13,17 +18,25 @@ resource "aws_eip" "eip" {
 
 
 #Nat gateway
-resource "aws_nat_gateway" "nat_gateway" {
+resource "aws_nat_gateway" "nat_gateway1" {
   allocation_id = aws_eip.eip.id
   subnet_id     = "{aws_subnet.public_subnet1.id}"
 
   tags = {
-    Name = "NAT-GW"
+    Name = "NAT-G-1"
   }
   depends_on = [aws_internet_gateway.public_internet_gateway]
 }
 
+resource "aws_nat_gateway" "nat_gateway2" {
+  allocation_id = aws_eip.eip2.id
+  subnet_id     = "{aws_subnet.public_subnet2.id}"
 
+  tags = {
+    Name = "NAT-GW-2"
+  }
+  depends_on = [aws_internet_gateway.public_internet_gateway]
+}
 
 
 
