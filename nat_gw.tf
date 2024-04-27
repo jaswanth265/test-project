@@ -4,17 +4,28 @@ resource "aws_eip" "eip" {
   domain = "vpc"
 }
 
+# resource "aws_nat_gateway" "nat_gateway" {
+#   for_each      = toset(["aws_subnet.public_subnet1.id", "aws_subnet.public_subnet2.id"]) # Subnet names here
+#   allocation_id = aws_eip.eip.id
+#   subnet_id     = aws_subnet[each.value].id
+# }
+
+
 
 #Nat gateway
 resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.eip.id
-  subnet_id     = "{aws_subnet.public_subnet1.id,aws_subnet.public_subnet2.id}"
+  subnet_id     = "{aws_subnet.public_subnet1.id}"
 
   tags = {
     Name = "NAT-GW"
   }
   depends_on = [aws_internet_gateway.public_internet_gateway]
 }
+
+
+
+
 
 # # Create EIP for NAT GW1
 # resource "aws_eip" "eip_natgw1" {
