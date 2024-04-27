@@ -6,9 +6,9 @@ resource "aws_launch_configuration" "webserver-launch-config" {
   instance_type   = "t2.micro"
   key_name        = var.key_pair
   security_groups = ["${aws_security_group.web_sg.id}"]
-  iam_instance_profile = join(",", [aws_iam_instance_profile.ec2_profile,
-    aws_iam_instance_profile.s3_backend_instance_profile,
-  aws_iam_instance_profile.asg_profile])
+  iam_instance_profile = [aws_iam_instance_profile.ec2_profile.name,
+                          aws_iam_instance_profile.s3_backend_instance_profile.name,
+                          aws_iam_instance_profile.asg_profile.name]
 
   root_block_device {
     volume_type = "gp2"
