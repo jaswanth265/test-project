@@ -1,12 +1,12 @@
-data "aws_secretsmanager_secret" "example" {
+data "aws_secretsmanager_secret" "example1" {
   name = "rds_admin6"
   depends_on = [
-    aws_secretsmanager_secret.example
+    aws_secretsmanager_secret.example1
   ]
 }
 
 data "aws_secretsmanager_secret_version" "secret" {
-  secret_id = data.aws_secretsmanager_secret.example.id
+  secret_id = data.aws_secretsmanager_secret.example1.id
 }
 
 
