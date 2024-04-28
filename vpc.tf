@@ -20,6 +20,18 @@ resource "aws_internet_gateway" "public_internet_gateway" {
   }
 }
 
+
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id = "${aws_vpc.web-vpc.id}"
+  service_name = "com.amazon.us-west-2.s3"
+  
+}
+
+resource "aws_vpc_endpoint_route_table_association""rta"{
+  route_table_id = "${aws_route_table.public_route_table.id}"
+  vpc_endpoint_id = "${aws_vpc_endpoint.s3.id}"
+}
+
 # #ElasticIP 
 # resource "aws_eip" "eip" {
 #   instance = aws_instance.web-server.id
