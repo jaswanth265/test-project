@@ -2,7 +2,7 @@
 
 resource "aws_iam_role_policy" "ec2_policy" {
   name = "ec2_policy"
-  role = "${aws_iam_role.ec2_role.id}"
+  role = aws_iam_role.ec2_role.id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -37,17 +37,17 @@ resource "aws_iam_role" "ec2_role" {
 }
 
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "test_profile"
+  name = "ec2_profile"
   role = aws_iam_role.ec2_role.name
 }
 
 
-
+#S3 Backend
 
 # IAM Policy
 resource "aws_iam_role_policy" "s3_backend_policy" {
   name = "S3BackendPolicy"
-  role = "${aws_iam_role.s3_backend_role.id}"
+  role = aws_iam_role.s3_backend_role.id
 
   policy = <<EOF
 {
@@ -98,7 +98,7 @@ resource "aws_iam_instance_profile" "s3_backend_instance_profile" {
 
 resource "aws_iam_role_policy" "asg_policy" {
   name = "asg_policy"
-  role = "${aws_iam_role.asg_role.id}"
+  role = aws_iam_role.asg_role.id
 
   policy = jsonencode({
     Version = "2012-10-17"

@@ -5,7 +5,8 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = [aws_subnet.public_subnet1.id, aws_subnet.public_subnet2.id]
+  subnets            = [for subnet in aws_subnet.public_subnets : subnet.id]
+  # subnets            = [aws_subnet.public_subnet1.id, aws_subnet.public_subnet2.id]
 
   tags = {
     name = "Applicationlb"
