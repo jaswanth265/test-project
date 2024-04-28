@@ -7,10 +7,7 @@ resource "aws_launch_configuration" "webserver-launch-config" {
   key_name                    = var.key_pair
   security_groups             = ["${aws_security_group.web_sg.id}"]
   associate_public_ip_address = true
-  iam_instance_profile = [
-    aws_iam_instance_profile.asg_profile.name,
-    aws_iam_instance_profile.s3_backend_instance_profile.name,
-  aws_iam_instance_profile.ec2_profile.name]
+  iam_instance_profile        = "${aws_iam_instance_profile.ec2_profile.name}"
 
 
 
